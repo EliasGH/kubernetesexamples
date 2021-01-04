@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-lab-rs
+  labels:
+    tier: frontend
+spec:
+  selector:
+    matchLabels:
+      app: nginx-lab
+      tier: frontend
+  replicas: 3
+  template:
+    metadata:
+      name: nginx-lab
+      labels:
+        app: nginx-lab
+        tier: frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
